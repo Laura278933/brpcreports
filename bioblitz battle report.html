@@ -3,70 +3,82 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BioBlitz Battle Report</title>
+  <title></title>
 
-  <script src="bioblitz battle report_files/header-attrs-2.28/header-attrs.js"></script>
-  <script src="bioblitz battle report_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="bioblitz battle report_files/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
-  <script src="bioblitz battle report_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-  <script src="bioblitz battle report_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-  <script src="bioblitz battle report_files/bootstrap-3.3.5/shim/respond.min.js"></script>
-
-  <style>
-    h1 { font-size: 34px; }
-    h1.title { font-size: 38px; }
-    h2 { font-size: 30px; }
-    h3 { font-size: 24px; }
-    h4 { font-size: 18px; }
-    h5 { font-size: 16px; }
-    h6 { font-size: 12px; }
-    code { color: inherit; background-color: rgba(0, 0, 0, 0.04); }
-    pre:not([class]) { background-color: white; }
-  </style>
-
-  <script src="bioblitz battle report_files/navigation-1.1/tabsets.js"></script>
-  <script src="bioblitz battle report_files/kePrint-0.0.1/kePrint.js"></script>
-  <link href="bioblitz battle report_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
-  <link rel="stylesheet" href="brand_styles.css" />
-</head>
+    <script src="bioblitz battle report_files/header-attrs-2.28/header-attrs.js"></script>
+    <script src="bioblitz battle report_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="bioblitz battle report_files/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+    <script src="bioblitz battle report_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script src="bioblitz battle report_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+    <script src="bioblitz battle report_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+    <style>h1 {font-size: 34px;}
+           h1.title {font-size: 38px;}
+           h2 {font-size: 30px;}
+           h3 {font-size: 24px;}
+           h4 {font-size: 18px;}
+           h5 {font-size: 16px;}
+           h6 {font-size: 12px;}
+           code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+           pre:not([class]) { background-color: white }</style>
+    <script src="bioblitz battle report_files/navigation-1.1/tabsets.js"></script>
+    <script src="bioblitz battle report_files/kePrint-0.0.1/kePrint.js"></script>
+    <link href="bioblitz battle report_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+  
+  <!-- Bootstrap theme (required if you use toc_float; harmless otherwise) -->
+    <link rel="stylesheet" href="cosmo" />
+  
+  <!-- Any css: entries from YAML -->
+    <link rel="stylesheet" href="brand_styles.css" />
+  </head>
 
 <body>
-  <!-- WRAP EVERYTHING IN THIS DIV FOR IFRAME RESIZING -->
-  <div id="resizableContent" data-iframe-height>
 
-    <!-- LOGO FIRST -->
-    <header class="report-header">
-      <img src="Secondary%20Logo_black%20and%20blue_updated.svg" alt="The Rock Pool Project logo" class="report-logo">
-    </header>
+  <!-- LOGO FIRST -->
+  <header class="report-header">
+    <img src="Secondary%20Logo_black%20and%20blue_updated.svg" alt="The Rock Pool Project logo" class="report-logo">
+  </header>
 
-    <!-- THEN TOC -->
+  <!-- THEN TOC -->
     <nav id="TOC" role="doc-toc">
-      <ul>
-        <li><a href="#overall-results" id="toc-overall-results">Overall Results</a></li>
-        <li><a href="#event-species-list" id="toc-event-species-list">Event species list</a></li>
-        <li><a href="#team-results" id="toc-team-results">Team results</a></li>
-        <li><a href="#individual-results" id="toc-individual-results">Individual results</a></li>
-        <li><a href="#top-species-found" id="toc-top-species-found">Top species found</a></li>
-      </ul>
-    </nav>
+    <ul>
+    <li><a href="#overall-results" id="toc-overall-results">Overall
+    Results</a></li>
+    <li><a href="#event-species-list" id="toc-event-species-list">Event
+    species list</a></li>
+    <li><a href="#team-results" id="toc-team-results">Team
+    results</a></li>
+    <li><a href="#individual-results"
+    id="toc-individual-results">Individual results</a></li>
+    <li><a href="#top-species-found" id="toc-top-species-found">Top
+    species found</a></li>
+    </ul>
+  </nav>
+  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const toc = document.getElementById("TOC");
+  const target = document.getElementById("toc-here");
+  if (toc && target) target.appendChild(toc);
+});
+</script>
 
-    <!-- REPORT TITLE -->
-    <div class="report-title">
-      BioBlitz Battle Report - BRPC - Firestone Bay July 2025
-    </div>
+  <!-- THEN BODY -->
+  <div class="report-title">
+  BioBlitz Battle Report - BRPC - Firestone Bay July 2025
+  </div>
+  <p style="text-align:center; margin: 0 0 1rem 0;">
+  <img src="FB%20TRPP.png" alt="Cover image" style="max-width:70%; max-height:60vh; height:auto;"/>
+  </p>
+  <div id="content" class="section level2 unlisted">
+  <h2 class="unlisted">Content</h2>
+  <div id="toc-here">
 
-    <p style="text-align:center; margin: 0 0 1rem 0;">
-      <img src="FB%20TRPP.png" alt="Cover image" style="max-width:70%; max-height:60vh; height:auto;" />
-    </p>
-
-    <div id="content" class="section level2 unlisted">
-      <h2 class="unlisted">Content</h2>
-      <div id="toc-here"></div>
-      <p>You can view all the wildlife we recorded at this event on
-        iNaturalist <a href="https://www.inaturalist.org/projects/brpc-firestone-bay-july-2025">here</a>.
-      </p>
-    </div>
-    
+  </div>
+  <p>You can view all the wildlife we recorded at this event on
+  iNaturalist <a
+  href="https://www.inaturalist.org/projects/brpc-firestone-bay-july-2025">here</a>.</p>
+  </div>
   <div id="overall-results" class="section level2">
   <h2>Overall Results</h2>
   <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -817,22 +829,43 @@
   </div>
   <hr style="width:80%; border:0; border-top:1px solid rgba(25,29,45,0.25); margin: 20px auto 0 auto;"/>
   </div>
-
-
-
   </div>
 
-  <!-- IFRAME RESIZER SCRIPT -->
-  <script src="https://cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.contentWindow.min.js"></script>
-
-  <!-- Move TOC inside the placeholder -->
+  
+  <!-- Autosize iframe height -->
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const toc = document.getElementById("TOC");
-      const target = document.getElementById("toc-here");
-      if (toc && target) target.appendChild(toc);
-    });
+  (function () {
+
+    // Only run if we're inside an iframe
+    if (window.self === window.top) return;
+
+    function sendHeight() {
+      const h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight
+      );
+
+      parent.postMessage(
+        { type: "rpp-report-height", height: h },
+        "*"
+      );
+    }
+
+    window.addEventListener("load", sendHeight);
+    window.addEventListener("resize", sendHeight);
+
+    // Watch for dynamic layout changes (tables/images loading)
+    const ro = new ResizeObserver(sendHeight);
+    ro.observe(document.body);
+
+    // Fallback in case images load late
+    setTimeout(sendHeight, 300);
+    setTimeout(sendHeight, 1000);
+
+  })();
   </script>
+
 </body>
 </html>
-
