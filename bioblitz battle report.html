@@ -838,17 +838,15 @@ document.addEventListener("DOMContentLoaded", function () {
   if (window.self === window.top) return;
 
   function sendHeight() {
-    const content = document.querySelector("#content"); // measure main report
-    if (!content) return;
+    const lastEl = document.querySelector(".cta-block hr:last-of-type") || document.body;
+    if (!lastEl) return;
 
-    const rect = content.getBoundingClientRect();
-    const computedHeight = Math.ceil(rect.bottom);
-
-    const maxHeight = 4000; // adjust if needed
-    const finalHeight = Math.min(computedHeight, maxHeight);
+    const rect = lastEl.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const totalHeight = Math.ceil(rect.bottom + scrollTop);
 
     parent.postMessage(
-      { type: "rpp-report-height", height: finalHeight },
+      { type: "rpp-report-height", height: totalHeight },
       "*"
     );
   }
@@ -857,13 +855,14 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", sendHeight);
 
   const ro = new ResizeObserver(sendHeight);
-  ro.observe(document.querySelector("#content"));
+  ro.observe(document.body);
 
-  setTimeout(sendHeight, 300); // fallback
+  setTimeout(sendHeight, 300); // fallback for late-loading images
 })();
 </script>
 
 </body>
 </html>
+
 
 
