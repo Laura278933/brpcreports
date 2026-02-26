@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +34,9 @@
   </head>
 
 <body>
-
+  
+<script src="https://cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.contentWindow.min.js"></script>
+  
   <!-- LOGO FIRST -->
   <header class="report-header">
     <img src="Secondary%20Logo_black%20and%20blue_updated.svg" alt="The Rock Pool Project logo" class="report-logo">
@@ -823,27 +826,18 @@
   </div>
   </div>
 
-<script src="https://cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.contentWindow.min.js"></script>
-
 <script>
-function triggerResize() {
-  if (window.parentIFrame) {
-    window.parentIFrame.size();
+  function triggerResize() {
+    if (window.parentIFrame) window.parentIFrame.size();
   }
-}
 
-// Resize after full load
-window.addEventListener("load", triggerResize);
+  // Trigger on page load
+  window.addEventListener("load", triggerResize);
 
-// Resize whenever any image finishes loading
-document.addEventListener("DOMContentLoaded", function () {
-  const images = document.querySelectorAll("img");
-  images.forEach(img => {
-    if (!img.complete) {
-      img.addEventListener("load", triggerResize);
-    }
+  // Trigger for each image as it finishes loading
+  document.querySelectorAll("img").forEach(img => {
+    if (!img.complete) img.addEventListener("load", triggerResize);
   });
-});
 </script>
   
 </body>
@@ -856,6 +850,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (toc && target) target.appendChild(toc);
 });
 </script>
+
 
 
 
