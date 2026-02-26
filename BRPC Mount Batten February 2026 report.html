@@ -835,37 +835,40 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 
   
- <script>
-(function () {
-  if (window.self === window.top) return; // only run inside iframe
+  <!-- Autosize iframe height -->
+  <script>
+  (function () {
 
-  let lastHeight = 0;
+    // Only run if we're inside an iframe
+    if (window.self === window.top) return;
 
-  function sendHeight() {
-    const h = Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.offsetHeight
-    );
+    function sendHeight() {
+      const h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight
+      );
 
-    if (h !== lastHeight) {
-      lastHeight = h;
-      parent.postMessage({ type: "rpp-report-height", height: h }, "*");
+      parent.postMessage(
+        { type: "rpp-report-height", height: h },
+        "*"
+      );
     }
-  }
 
-  window.addEventListener("load", sendHeight);
-  window.addEventListener("resize", sendHeight);
+    window.addEventListener("load", sendHeight);
+    window.addEventListener("resize", sendHeight);
 
-  const ro = new ResizeObserver(sendHeight);
-  ro.observe(document.body);
+    // Watch for dynamic layout changes (tables/images loading)
+    const ro = new ResizeObserver(sendHeight);
+    ro.observe(document.body);
 
-  setTimeout(sendHeight, 300);
-  setTimeout(sendHeight, 1000);
-})();
-</script>
+    // Fallback in case images load late
+    setTimeout(sendHeight, 300);
+    setTimeout(sendHeight, 1000);
+
+  })();
+  </script>
 
 </body>
 </html>
-
