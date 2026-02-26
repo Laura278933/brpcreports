@@ -835,40 +835,41 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 
   
-  <!-- Autosize iframe height -->
-  <script>
-  (function () {
+<script>
+(function () {
+  // Only run if we're inside an iframe
+  if (window.self === window.top) return;
 
-    // Only run if we're inside an iframe
-    if (window.self === window.top) return;
+  function sendHeight() {
+    const h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    parent.postMessage({ type: "rpp-report-height", height: h }, "*");
+  }
 
-    function sendHeight() {
-      const h = Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.offsetHeight
-      );
+  // Initial height after load
+  window.addEventListener("load", sendHeight);
+  // Recalculate on window resize
+  window.addEventListener("resize", sendHeight);
 
-      parent.postMessage(
-        { type: "rpp-report-height", height: h },
-        "*"
-      );
+  // Extra calls after short delays to catch late-loading images
+  setTimeout(sendHeight, 300);
+  setTimeout(sendHeight, 1000);
+  setTimeout(sendHeight, 2000);
+
+  // Optional: for images that may load asynchronously but not trigger layout change
+  const imgs = document.images;
+  for (let i = 0; i < imgs.length; i++) {
+    if (!imgs[i].complete) {
+      imgs[i].addEventListener('load', sendHeight);
     }
-
-    window.addEventListener("load", sendHeight);
-    window.addEventListener("resize", sendHeight);
-
-    // Watch for dynamic layout changes (tables/images loading)
-    const ro = new ResizeObserver(sendHeight);
-    ro.observe(document.body);
-
-    // Fallback in case images load late
-    setTimeout(sendHeight, 300);
-    setTimeout(sendHeight, 1000);
-
-  })();
-  </script>
+  }
+})();
+</script>
 
 </body>
 </html>
+
