@@ -833,25 +833,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   
   <!-- Autosize iframe height -->
- <script>
+<script>
 (function () {
   if (window.self === window.top) return;
 
   function sendHeight() {
-    const body = document.body;
-    const html = document.documentElement;
+    const content = document.querySelector("#content"); // measure main report
+    if (!content) return;
 
-    // Calculate actual content height
-    const contentHeight = Math.max(
-      body.scrollHeight,
-      html.scrollHeight,
-      body.offsetHeight,
-      html.offsetHeight
-    );
+    const rect = content.getBoundingClientRect();
+    const computedHeight = Math.ceil(rect.bottom);
 
-    // Optional: set a maximum height to prevent extreme overshoot
-    const maxHeight = 4000; // adjust if your report is taller
-    const finalHeight = Math.min(contentHeight, maxHeight);
+    const maxHeight = 4000; // adjust if needed
+    const finalHeight = Math.min(computedHeight, maxHeight);
 
     parent.postMessage(
       { type: "rpp-report-height", height: finalHeight },
@@ -862,15 +856,14 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("load", sendHeight);
   window.addEventListener("resize", sendHeight);
 
-  // Observe dynamic changes in content (images, tables, etc.)
   const ro = new ResizeObserver(sendHeight);
-  ro.observe(document.body);
+  ro.observe(document.querySelector("#content"));
 
-  // Minimal fallback, no repeated oversizing
-  setTimeout(sendHeight, 300);
+  setTimeout(sendHeight, 300); // fallback
 })();
 </script>
 
 </body>
 </html>
+
 
