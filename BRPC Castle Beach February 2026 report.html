@@ -2137,38 +2137,36 @@ document.addEventListener("DOMContentLoaded", function () {
   
   <!-- Autosize iframe height -->
   <script>
-  (function () {
+(function () {
+  if (window.self === window.top) return;
 
-    // Only run if we're inside an iframe
-    if (window.self === window.top) return;
+  function sendHeight() {
+    const content = document.querySelector("body"); // include everything visible
+    if (!content) return;
 
-    function sendHeight() {
-      const h = Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.offsetHeight
-      );
+    // Use bounding rect of the full content
+    const rect = content.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const totalHeight = Math.ceil(rect.height);
 
-      parent.postMessage(
-        { type: "rpp-report-height", height: h },
-        "*"
-      );
-    }
+    parent.postMessage(
+      { type: "rpp-report-height", height: totalHeight },
+      "*"
+    );
+  }
 
-    window.addEventListener("load", sendHeight);
-    window.addEventListener("resize", sendHeight);
+  window.addEventListener("load", sendHeight);
+  window.addEventListener("resize", sendHeight);
 
-    // Watch for dynamic layout changes (tables/images loading)
-    const ro = new ResizeObserver(sendHeight);
-    ro.observe(document.body);
+  const ro = new ResizeObserver(sendHeight);
+  ro.observe(document.body);
 
-    // Fallback in case images load late
-    setTimeout(sendHeight, 300);
-    setTimeout(sendHeight, 1000);
-
-  })();
-  </script>
+  // Fallbacks for late images
+  setTimeout(sendHeight, 300);
+  setTimeout(sendHeight, 1000);
+})();
+</script>
 
 </body>
 </html>
+
