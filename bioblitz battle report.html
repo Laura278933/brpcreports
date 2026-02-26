@@ -826,12 +826,23 @@
 <script src="https://cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.contentWindow.min.js"></script>
 
 <script>
-window.addEventListener('load', function () {
+function triggerResize() {
   if (window.parentIFrame) {
-    setTimeout(function() {
-      window.parentIFrame.size();
-    }, 500);
+    window.parentIFrame.size();
   }
+}
+
+// Resize after full load
+window.addEventListener("load", triggerResize);
+
+// Resize whenever any image finishes loading
+document.addEventListener("DOMContentLoaded", function () {
+  const images = document.querySelectorAll("img");
+  images.forEach(img => {
+    if (!img.complete) {
+      img.addEventListener("load", triggerResize);
+    }
+  });
 });
 </script>
   
@@ -845,5 +856,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (toc && target) target.appendChild(toc);
 });
 </script>
+
 
 
